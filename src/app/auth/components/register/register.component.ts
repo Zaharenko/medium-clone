@@ -18,13 +18,13 @@ export class RegisterComponent {
     this.initForm();
   }
 
-  initForm(): void {
-    this.form = this.fb.group({
-      username: [""],
-      email: [""],
-      password: [""]
-    });
-  }
+          initForm(): void {
+            this.form = this.fb.group({
+              username: [""],
+              email: [""],
+              password: [""]
+            });
+          }
 
   onSubmit(): void {
     this.store.dispatch(registerAction(this.form.value));
