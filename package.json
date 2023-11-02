@@ -60,7 +60,6 @@
   },
   "lint-staged": {
     "*.{ts,css,scss,html}": [
-      "prettier --write",
       "npm run lint:fix"
     ]
   }
