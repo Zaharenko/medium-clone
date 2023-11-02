@@ -9,7 +9,7 @@ import { registerAction } from "../../store/actions/register.action";
   templateUrl: "./register.component.html",
   styleUrls: ["./register.component.scss"],
 })
-export class RegisterComponent {
+export class RegisterComponent inplements OnInit{
   form: FormGroup;
 
   constructor(private fb: FormBuilder, private store: Store) {}
