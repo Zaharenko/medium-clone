@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule, FormsModule, FormBuilder } from "@angular/forms";
-import { Action, Store, StoreModule } from "@ngrx/store";
-import { registerAction } from "../../store/actions/register.action";
+import { Store, StoreModule } from "@ngrx/store";
 import { RegisterComponent } from "./register.component";
 
 describe("RegisterComponent", () => {
@@ -15,7 +14,7 @@ describe("RegisterComponent", () => {
       imports: [ReactiveFormsModule, FormsModule, StoreModule.forRoot({})],
       providers: [FormBuilder],
     });
-	fixture = TestBed.createComponent(RegisterComponent);
+    fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     store = TestBed.inject(Store);
     fixture.detectChanges();
@@ -33,18 +32,18 @@ describe("RegisterComponent", () => {
     expect(component.form.get("password").value).toBe("");
   });
 
-  it('should dispatch register action on submit', () => {
+  it("should dispatch register action on submit", () => {
     const formValue = {
-		user: {
-		  username: 'testUser',
-		  email: 'test@test.com',
-		  password: 'password123',
-		},
-	  };
+      user: {
+        username: "testUser",
+        email: "test@test.com",
+        password: "password123",
+      },
+    };
 
     component.form.setValue(formValue.user);
 
-    spyOn(store, 'dispatch');
+    spyOn(store, "dispatch");
 
     component.onSubmit();
 

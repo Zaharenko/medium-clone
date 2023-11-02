@@ -1,0 +1,35 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+RED='\033[0;31m'    # Red color
+GREEN='\033[0;32m'  # Green color
+YELLOW='\033[0;33m' # Yellow color
+NC='\033[0m'        # Reset color
+
+message="$(cat "$1")"
+requiredPattern="^(feature|hotfix|bugfix)\/#[0-9]+-.{1,50}$"
+taskPattern="#[0-9]+"
+if ! [[ $message =~ $requiredPattern ]]; then
+  echo "${RED}🚨 Wrong commit message format! 😕${NC}"
+  echo "${GREEN}The commit message must follow this format:${NC}"
+  echo "${GREEN}For features: feature/#{Phabricator-Task-Number}-{Short Description}${NC}"
+  echo "${GREEN}For hotfixes: hotfix/#{Phabricator-Task-Number}-{Short Description}${NC}"
+  echo "${GREEN}For bugfixes: bugfix/#{Phabricator-Task-Number-{Short Description}${NC}"
+  echo "The title (Short Description) must start with a capital letter, be no more than 50 characters, and not end with a period."
+  echo "${GREEN}Example: feature/#1-Add new login button${NC}"
+  echo "${RED}Your commit message was:${NC}"
+  echo "${RED}$message${NC}"
+  echo "${YELLOW}For more information, check the script in .husky/commit-msg${NC}"
+  exit 1
+fi
+
+title="$(echo "$message" | head -n 1)"
+if ! [[ $title =~ $taskPattern ]]; then
+  echo "${RED}🚨 Wrong commit message format! 😕${NC}"
+  echo "${GREEN}The Phabricator Task Number should start with '#' followed by digits (e.g., #1000) and be part of the title.${NC}"
+  echo "${GREEN}Example: feature/#1-Add new login button${NC}"
+  echo "${RED}Your commit message was:${NC}"
+  echo "${RED}$message${NC}"
+  echo "${YELLOW}For more information, check the script in .husky/commit-msg${NC}"
+  exit 1
+fi

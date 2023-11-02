@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:unit": "ng test --watch=false --browsers=ChromeHeadless --code-coverage",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix --color",
     "prepare": "husky install"
