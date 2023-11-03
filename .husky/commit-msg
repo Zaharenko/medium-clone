@@ -7,7 +7,7 @@ YELLOW='\033[0;33m' # Yellow color
 NC='\033[0m'        # Reset color
 
 message="$(cat "$1")"
-requiredPattern="^(feature|hotfix|bugfix)\/#[0-9]+-.{1,50}$"
+requiredPattern="^(ui|metrics)#[0-9] .{1,50}$"
 taskPattern="#[0-9]+"
 if ! [[ $message =~ $requiredPattern ]]; then
   echo "${RED}🚨 Wrong commit message format! 😕${NC}"
